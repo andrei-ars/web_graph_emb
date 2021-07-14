@@ -6,17 +6,45 @@ from feature_extraction.extractor import FeatureExtractor
 import pickle
 
 
-def create_dataset(labeled_webgraphs):
+def create_webgraphs(html_files):
+
+    state_factory = WebGraphFactory(sequence_handler=None)
+    FeatureExtractor.set_config(config=None)
+
+    url = "https://demo1.testgold.dev/login"
+
+    webgraphs = []
+
+    for path in html_files:
+        with open(path) as fp:
+            html = fp.read()
+        webgraph = state_factory.get_webgraph(html, url)
+        webgraphs.append(webgraph)
+
+    return webgraphs
+
+
+def create_dataset(webgraphs, labels):
     """
-    webgraphs: list of tuples like [(webgraph1, label1), (webgraph2, label2)]
+    webgraphs: the list of webgraphs
+    lables: the list of labels
     """
     edges = []
-    for graph_id, (webgraph, label) in enumerate(labeled_webgraphs):
-        x, edge_index = webgraph.get_data()
-        for edge in edge_index:
-            edges.append((graph_id, edge[0], edge[1]))
+    properties = []
+    features = []
+    assert len(webgraphs) == len(labels)
 
-    return edges
+    for graph_id, webgraph in enumerate(webgraphs):
+        x, edge_index = webgraph.get_data()
+        assert len(x) == len(edge_index)
+        num_nodes = len(edge_index)
+        label = labels[graph_id]
+        properties.append((graph_id, label, num_nodes))
+        for node_id, edge in enumerate(edge_index):
+            edges.append((graph_id, node_id, x[node_id]))
+            features.append((graph_id, edge[0], edge[1]))
+
+    return {'edges': edges, 'properties': properties, 'features': features}
 
 
 if __name__ == "__main__":
@@ -48,16 +76,22 @@ if __name__ == "__main__":
     #x, edge_index = webgraph.get_data()
     #print(x)
     #print(edge_index)
-    #webgraph.visualize()
+    webgraph.visualize()
 
-    print("Saving webgraphes into files...")
-    with open("./dataset/graph_edges.csv", "wt") as fp_edges:
-        with open("./dataset/graph_properties.csv", "wt") as fp_properties:
-            with open("./dataset/node_features.csv", "wt") as fp_features:
-                graph_id = 0
-                webgraph.save_to_csv_files(graph_id, fp_edges, fp_properties, fp_features)
+    #print("Saving webgraphes into files...")
+    #with open("./dataset/graph_edges.csv", "wt") as fp_edges:
+    #    with open("./dataset/graph_properties.csv", "wt") as fp_properties:
+    #        with open("./dataset/node_features.csv", "wt") as fp_features:
+    #            graph_id = 0
+    #            webgraph.save_to_csv_files(graph_id, fp_edges, fp_properties, fp_features)
 
-    dataset = create_dataset(labeled_webgraphs=[(webgraph, 'login')])
 
-    with open("dump.pk", "wb") as fp: 
+    labels = ['login', 'other', 'other']
+    html_files = ['html/0.html', 'html/1.html', 'html/2.html']
+
+    webgraphs = create_webgraphs(html_files)
+    dataset = create_dataset(webgraphs, labels)
+    print(dataset)
+
+    with open("dataset.dump", "wb") as fp: 
         pickle.dump(dataset, fp)

@@ -16,6 +16,11 @@ The format of data files:
         label: the label of the graph.
         num_nodes: the number of nodes in the graph.
 
+    node_features:
+        graph_id: int
+        node_id: int
+        features: 1d-vector
+
 """
 
 edges = pd.read_csv('./graph_edges.csv')

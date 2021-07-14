@@ -35,14 +35,15 @@ def create_dataset(webgraphs, labels):
     assert len(webgraphs) == len(labels)
 
     for graph_id, webgraph in enumerate(webgraphs):
+        webgraph.visualize()
         x, edge_index = webgraph.get_data()
-        assert len(x) == len(edge_index)
-        num_nodes = len(edge_index)
+        num_nodes = len(x)
         label = labels[graph_id]
         properties.append((graph_id, label, num_nodes))
-        for node_id, edge in enumerate(edge_index):
-            edges.append((graph_id, node_id, x[node_id]))
-            features.append((graph_id, edge[0], edge[1]))
+        for edge in edge_index:
+            edges.append((graph_id, edge[0], edge[1]))
+        for node_id, feature in enumerate(x):
+            features.append((graph_id, node_id, feature))
 
     return {'edges': edges, 'properties': properties, 'features': features}
 
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     #x, edge_index = webgraph.get_data()
     #print(x)
     #print(edge_index)
-    webgraph.visualize()
+    #webgraph.visualize()
 
     #print("Saving webgraphes into files...")
     #with open("./dataset/graph_edges.csv", "wt") as fp_edges:

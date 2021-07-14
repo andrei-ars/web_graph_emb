@@ -333,3 +333,16 @@ class WebGraph():
     def __getstate__(self):
         return {k:self._pickle_value(k,v) for (k, v) in self.__dict__.items() }
 
+    def save_to_csv_files(self, graph_id, fp_edges, fp_properties, fp_features):
+        x, edge_index = self.get_data()
+        num_nodes = len(x)
+        label = "login"
+        #print(x)
+        #print(edge_index)
+        for edge in edge_index:
+            fp_edges.write("{},{},{}\n".format(graph_id, edge[0], edge[1]))
+            fp_properties.write("{},{},{}\n".format(graph_id, label, num_nodes))
+            for node_id, feature_vector in enumerate(x):
+                fp_features.write("{},{},{}\n".format(graph_id, node_id, feature_vector))
+
+

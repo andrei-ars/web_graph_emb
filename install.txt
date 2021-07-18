@@ -1,2 +1,15 @@
+ssh -i "andrei1.pem" admin@ec2-15-188-57-129.eu-west-3.compute.amazonaws.com
+
+--
+
 sudo apt install graphviz-dev
 pip install pygraphviz
+
+
+--
+pip3 install torch
+pip3 install torch_geometric
+pip3 install torch_sparse
+pip3 install torch_scatter
+pip3 install dgl
+pip3 install 

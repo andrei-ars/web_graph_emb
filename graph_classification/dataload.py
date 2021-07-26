@@ -2,6 +2,7 @@ import dgl
 from dgl.data import DGLDataset
 import torch
 import os
+import pickle
 
 """
 The format of data files:
@@ -23,17 +24,21 @@ The format of data files:
 
 """
 
-edges = pd.read_csv('./graph_edges.csv')
-properties = pd.read_csv('./graph_properties.csv')
-edges.head()
-properties.head()
+#edges = pd.read_csv('./graph_edges.csv')
+#properties = pd.read_csv('./graph_properties.csv')
+#edges.head()
+#properties.head()
 
 
 class WebGraphDataset(DGLDataset):
     """ A dataset for webgraph classification problem
     """
-    def __init__(self):
+    def __init__(self, path=None):
         super().__init__(name='web_graph')
+        with open(path) as fp:
+            dataset = pickle.load(fp)
+            print(dataset)
+
         
     def process(self):
         edges = pd.read_csv('./graph_edges.csv')
@@ -76,6 +81,9 @@ class WebGraphDataset(DGLDataset):
     def __len__(self):
         return len(self.graphs)
 
-dataset = WebGraphDataset()
-graph, label = dataset[0]
-print(graph, label)
+
+if __name__ == "__main__":
+
+    dataset = WebGraphDataset("data/dataset.dump")
+    #graph, label = dataset[0]
+    #print(graph, label)

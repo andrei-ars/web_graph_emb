@@ -1,3 +1,11 @@
+"""
+See
+https://docs.dgl.ai/en/0.6.x/new-tutorial/6_load_data.html
+https://docs.dgl.ai/en/0.6.x/guide/data-dataset.html#guide-data-pipeline-dataset
+https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/datasets/tu_dataset.html
+
+"""
+
 import dgl
 from dgl.data import DGLDataset
 import torch

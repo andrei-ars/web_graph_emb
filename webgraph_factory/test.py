@@ -48,6 +48,41 @@ def create_dataset(webgraphs, labels):
     return {'edges': edges, 'properties': properties, 'features': features}
 
 
+def create_dataset_as_list(webgraphs, labels):
+    """
+    webgraphs: the list of webgraphs
+    lables: the list of labels
+    """
+    edges = []
+    properties = []
+    features = []
+    assert len(webgraphs) == len(labels)
+
+    dataset = []
+
+    for graph_id, webgraph in enumerate(webgraphs):
+        #webgraph.visualize()
+        x, edge_index = webgraph.get_data()
+        #num_nodes = len(x)
+        #label = labels[graph_id]
+        #properties.append((graph_id, label, num_nodes))
+        #for edge in edge_index:
+        #    edges.append((graph_id, edge[0], edge[1]))
+        #for node_id, feature in enumerate(x):
+        #    features.append((graph_id, node_id, feature))
+
+        gr = {
+            'id': graph_id, 
+            'label': labels[graph_id],
+            'num_nodes': len(x),
+            'edges': edge_index,
+            'x': x
+        }
+        dataset.append(gr)
+
+    return dataset
+
+
 if __name__ == "__main__":
 
     url = "https://demo1.testgold.dev/login"
@@ -91,7 +126,8 @@ if __name__ == "__main__":
     html_files = ['html/0.html', 'html/1.html', 'html/2.html']
 
     webgraphs = create_webgraphs(html_files)
-    dataset = create_dataset(webgraphs, labels)
+    #dataset = create_dataset(webgraphs, labels)
+    dataset = create_dataset_as_list(webgraphs, labels)
     
     print(dataset)
 

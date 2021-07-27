@@ -5,7 +5,7 @@ https://docs.dgl.ai/en/0.6.x/guide/data-dataset.html#guide-data-pipeline-dataset
 https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/datasets/tu_dataset.html
 
 """
-
+import numpy as np
 import dgl
 from dgl.data import DGLDataset
 import torch
@@ -46,21 +46,46 @@ class WebGraphDataset(DGLDataset):
     def __init__(self, path=None):
         super().__init__(name='web_graph')
         
-        #with open(path) as fp:
+        #with open(path, "rb") as fp:
         #    dataset = pickle.load(fp)
         #    print(dataset)
-
-        fp = open("data/dataset.dump", encoding="utf8")
-        dataset = pickle.load(fp)
-        fp.close()
-
-        
+        self.process()
+       
     def process(self):
-        edges = pd.read_csv('./graph_edges.csv')
-        properties = pd.read_csv('./graph_properties.csv')
+        #edges = pd.read_csv('./graph_edges.csv')
+        #properties = pd.read_csv('./graph_properties.csv')
         self.graphs = []
         self.labels = []
+
+        fp = open("data/dataset.dump", "rb")
+        dataset = pickle.load(fp)
+        fp.close()
+        label2index = {'login': 0, 'other': 1}
+
+        for graph_data in dataset:
+            graph_id = graph_data['id']
+            label = graph_data['label']
+            num_nodes = graph_data['num_nodes']
+            edges = graph_data['edges']
+            x = graph_data['x']
+            print(graph_id, label, label2index[label])
+
+            src = np.array([edge[0] for edge in edges])
+            dst = np.array([edge[1] for edge in edges])
+            print("src:", src)
+            print("dst:", dst)
+            # Create a graph and add it to the list of graphs and labels.
+            g = dgl.graph((src, dst), num_nodes=num_nodes)
+            print(g)
+            g.ndata['x'] = torch.tensor(np.array(x))
+            print(g.ndata['x'].shape)
+            self.graphs.append(g)
+            self.labels.append(label2index[label])
         
+        print(self.labels)
+        self.labels = torch.LongTensor(self.labels)
+
+        """
         # Create a graph for each graph ID from the edges table.
         # First process the properties table into two dictionaries with graph IDs as keys.
         # The label and number of nodes are values.
@@ -89,6 +114,7 @@ class WebGraphDataset(DGLDataset):
             
         # Convert the label list to tensor for saving.
         self.labels = torch.LongTensor(self.labels)
+        """
         
     def __getitem__(self, i):
         return self.graphs[i], self.labels[i]

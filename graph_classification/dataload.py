@@ -65,6 +65,7 @@ class WebGraphDataset(DGLDataset):
         for graph_data in dataset:
             graph_id = graph_data['id']
             label = graph_data['label']
+            label_index = label2index[label]
             num_nodes = graph_data['num_nodes']
             edges = graph_data['edges']
             x = graph_data['x']
@@ -77,10 +78,15 @@ class WebGraphDataset(DGLDataset):
             # Create a graph and add it to the list of graphs and labels.
             g = dgl.graph((src, dst), num_nodes=num_nodes)
             print(g)
-            g.ndata['x'] = torch.tensor(np.array(x))
-            print(g.ndata['x'].shape)
+            #print(g.ndata['x'].shape)
+            #g.ndata['x'] = torch.tensor(np.array(x))
+            g.x = torch.tensor(np.array(x))
+            print("g.x:", g.x.shape)
+            g.y = torch.tensor(label_index)
+            g.edge_index = torch.tensor([src, dst])
+
             self.graphs.append(g)
-            self.labels.append(label2index[label])
+            self.labels.append(label_index)
         
         print(self.labels)
         self.labels = torch.LongTensor(self.labels)

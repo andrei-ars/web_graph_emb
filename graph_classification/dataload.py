@@ -91,6 +91,9 @@ class WebGraphDataset(DGLDataset):
         print(self.labels)
         self.labels = torch.LongTensor(self.labels)
 
+        self.num_node_features = 106
+        self.num_classes = 2
+
         """
         # Create a graph for each graph ID from the edges table.
         # First process the properties table into two dictionaries with graph IDs as keys.

@@ -3,11 +3,12 @@ from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
 from dataload import WebGraphDataset
 
-#dataset = TUDataset(root='data/TUDataset', name='MUTAG')
-dataset = WebGraphDataset("data/dataset.dump")
+WebGraphDataset("data/dataset.dump")
 
-torch.manual_seed(12345)
-dataset = dataset.shuffle()
+#dataset = TUDataset(root='data/TUDataset', name='MUTAG')
+#dataset = dataset.shuffle()
+
+dataset = WebGraphDataset("data/dataset.dump")
 train_dataset = dataset[:150]
 test_dataset = dataset[150:]
 

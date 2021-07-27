@@ -92,6 +92,7 @@ if __name__ == "__main__":
 
     webgraphs = create_webgraphs(html_files)
     dataset = create_dataset(webgraphs, labels)
+    
     print(dataset)
 
     with open("dataset.dump", "wb") as fp: 

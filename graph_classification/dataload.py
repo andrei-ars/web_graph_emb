@@ -39,13 +39,20 @@ The format of data files:
 
 
 class WebGraphDataset(DGLDataset):
-    """ A dataset for webgraph classification problem
+    """ A dataset for webgraph classification problem.
+    Dataset should be a list of graphs and labels.
+    getitem should return a pair (graph, label)
     """
     def __init__(self, path=None):
         super().__init__(name='web_graph')
-        with open(path) as fp:
-            dataset = pickle.load(fp)
-            print(dataset)
+        
+        #with open(path) as fp:
+        #    dataset = pickle.load(fp)
+        #    print(dataset)
+
+        fp = open("data/dataset.dump", encoding="utf8")
+        dataset = pickle.load(fp)
+        fp.close()
 
         
     def process(self):

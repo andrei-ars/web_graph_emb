@@ -1,8 +1,3 @@
-"""
-
-
-"""
-
 import torch
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader

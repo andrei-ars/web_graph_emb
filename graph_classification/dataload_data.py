@@ -1,5 +1,5 @@
 """
-v1 - using DGLDataset
+v2 - using torch_geometric.data import Data
 
 See
 https://docs.dgl.ai/en/0.6.x/new-tutorial/6_load_data.html
@@ -8,11 +8,14 @@ https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/data
 
 """
 import numpy as np
-import dgl
-from dgl.data import DGLDataset
+#import dgl
+#from dgl.data import DGLDataset
 import torch
 import os
 import pickle
+
+from torch_geometric.data import Data
+from torch_geometric.data import Dataset
 
 """
 The format of data files:
@@ -40,19 +43,34 @@ The format of data files:
 #properties.head()
 
 
-class WebGraphDataset(DGLDataset):
+class WebGraphDataset():
     """ A dataset for webgraph classification problem.
     Dataset should be a list of graphs and labels.
     getitem should return a pair (graph, label)
     """
-    def __init__(self, path=None):
-        super().__init__(name='web_graph')
-        
+    #def __init__(self, path=None):
+    #    super().__init__()
+
+    def __init__(self):
+
         #with open(path, "rb") as fp:
         #    dataset = pickle.load(fp)
         #    print(dataset)
         self.process()
        
+    @property
+    def raw_file_names(self):
+        return ['some_file_1', 'some_file_2', ...]
+
+    @property
+    def processed_file_names(self):
+        return ['data_1.pt', 'data_2.pt', ...]
+
+    def download(self):
+        # Download to `self.raw_dir`.
+        path = download_url(url, self.raw_dir)
+        ...
+
     def process(self):
         #edges = pd.read_csv('./graph_edges.csv')
         #properties = pd.read_csv('./graph_properties.csv')
@@ -78,14 +96,22 @@ class WebGraphDataset(DGLDataset):
             print("src:", src)
             print("dst:", dst)
             # Create a graph and add it to the list of graphs and labels.
-            g = dgl.graph((src, dst), num_nodes=num_nodes)
+            #g = dgl.graph((src, dst), num_nodes=num_nodes)
+            
+            edge_index = torch.tensor([src, dst])
+            x = torch.tensor(np.array(x))
+            y = torch.tensor([label_index])
+
+            #g = Data(x=x, edge_index=edge_index.t().contiguous())
+            g = Data(x=x, y=y, edge_index=edge_index)
+
             print(g)
             #print(g.ndata['x'].shape)
             #g.ndata['x'] = torch.tensor(np.array(x))
-            g.x = torch.tensor(np.array(x))
-            print("g.x:", g.x.shape)
-            g.y = torch.tensor(label_index)
-            g.edge_index = torch.tensor([src, dst])
+            #g.x = torch.tensor(np.array(x))
+            #print("g.x:", g.x.shape)
+            #g.y = torch.tensor(label_index)
+            #g.edge_index = torch.tensor([src, dst])
 
             self.graphs.append(g)
             self.labels.append(label_index)
@@ -127,8 +153,8 @@ class WebGraphDataset(DGLDataset):
         self.labels = torch.LongTensor(self.labels)
         """
         
-    def __getitem__(self, i):
-        return self.graphs[i] #, self.labels[i]
+    def __getitem__(self, idx):
+        return self.graphs[idx] #, self.labels[i]
     
     def __len__(self):
         return len(self.graphs)

@@ -1,3 +1,4 @@
+import sys
 import torch
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
@@ -7,6 +8,10 @@ torch.manual_seed(12345)
 dataset = dataset.shuffle()
 train_dataset = dataset[:150]
 test_dataset = dataset[150:]
+
+print(dataset[0])
+print(type(dataset[0]))
+#sys.exit()
 
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
@@ -52,12 +57,13 @@ criterion = torch.nn.CrossEntropyLoss()
 def train():
     model.train()
 
-    for data in train_loader:  # Iterate in batches over the training dataset.
-         out = model(data.x, data.edge_index, data.batch)  # Perform a single forward pass.
-         loss = criterion(out, data.y)  # Compute the loss.
-         loss.backward()  # Derive gradients.
-         optimizer.step()  # Update parameters based on gradients.
-         optimizer.zero_grad()  # Clear gradients.
+    for i, data in enumerate(train_loader):  # Iterate in batches over the training dataset.
+        #print("data:", data)
+        out = model(data.x, data.edge_index, data.batch)  # Perform a single forward pass.
+        loss = criterion(out, data.y)  # Compute the loss.
+        loss.backward()  # Derive gradients.
+        optimizer.step()  # Update parameters based on gradients.
+        optimizer.zero_grad()  # Clear gradients.
 
 def test(loader):
      model.eval()

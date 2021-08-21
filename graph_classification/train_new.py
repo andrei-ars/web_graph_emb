@@ -1,25 +1,31 @@
+import sys
 import torch
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
-from dataload import WebGraphDataset
+from dataload_data import WebGraphDataset
 
-WebGraphDataset("data/dataset.dump")
+#WebGraphDataset("data/dataset.dump")
 
 #dataset = TUDataset(root='data/TUDataset', name='MUTAG')
 #dataset = dataset.shuffle()
 
-dataset = WebGraphDataset("data/dataset.dump")
-train_dataset = dataset[:150]
-test_dataset = dataset[150:]
+#dataset = WebGraphDataset("data/dataset.dump")
+dataset = WebGraphDataset()
+train_dataset = dataset[:2]
+test_dataset = dataset[2:]
+
+print(dataset[0])
+print(type(dataset[0]))
+#sys.exit()
 
 train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=2, shuffle=False)
-
 
 from torch.nn import Linear
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 from torch_geometric.nn import global_mean_pool
+
 
 class GCN(torch.nn.Module):
     def __init__(self, hidden_channels):
@@ -32,6 +38,8 @@ class GCN(torch.nn.Module):
 
     def forward(self, x, edge_index, batch):
         # 1. Obtain node embeddings 
+        x = x.float() # TO FLOAT!
+
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
@@ -57,11 +65,12 @@ def train():
     model.train()
 
     for data in train_loader:  # Iterate in batches over the training dataset.
-         out = model(data.x, data.edge_index, data.batch)  # Perform a single forward pass.
-         loss = criterion(out, data.y)  # Compute the loss.
-         loss.backward()  # Derive gradients.
-         optimizer.step()  # Update parameters based on gradients.
-         optimizer.zero_grad()  # Clear gradients.
+        print(data)
+        out = model(data.x, data.edge_index, data.batch)  # Perform a single forward pass.
+        loss = criterion(out, data.y)  # Compute the loss.
+        loss.backward()  # Derive gradients.
+        optimizer.step()  # Update parameters based on gradients.
+        optimizer.zero_grad()  # Clear gradients.
 
 def test(loader):
      model.eval()

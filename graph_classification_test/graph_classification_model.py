@@ -63,11 +63,11 @@ class Graph_Classification_Model:
 
         self.model = GCN(hidden_channels=64)
         print(self.model)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        self.optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
         self.criterion = torch.nn.CrossEntropyLoss()
 
-    def train(self, num_epochs=100):
-        for epoch in range(1, num_epochs):
+    def train(self):
+        for epoch in range(1, 10):
             self.train_epoch()
             train_acc = self.test(train_loader)
             test_acc = self.test(test_loader)
@@ -84,10 +84,9 @@ class Graph_Classification_Model:
             self.optimizer.step()  # Update parameters based on gradients.
             self.optimizer.zero_grad()  # Clear gradients.
 
-    def test(self, loader):
-        print("try eval")
-        self.model.eval()
-        print("ok")
+    def test(loader, self):
+        model.eval()
+
         correct = 0
         for data in loader:  # Iterate in batches over the training/test dataset.
             print("data.x:", data.x)
@@ -102,4 +101,4 @@ class Graph_Classification_Model:
 if __name__ == "__main__":
 
     cl_model =  Graph_Classification_Model()
-    cl_model.train(num_epochs=21)
+    cl_model.train()

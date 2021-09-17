@@ -1,0 +1,132 @@
+{
+	"initial": {		
+		"url": "https://buy-stage.malwarebytes.com/business/nss/first?currency=USD&sku=NCEDR-B&source=fastpass&term_length=365"		
+	},
+
+	"final": {		
+		"mode": "full_length",
+		"value": ""
+	},
+	
+	"testcase": {
+		"variables": {
+			"credit_card": {
+				"initial": "4111111111111111",
+				"range": "[4111111111111111,5555555555554444,4444444444444448,5500005555555559]"
+			}
+		},
+		"sequence": [
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/first?currency=USD&sku=NCEDR-B&source=fastpass&term_length=365",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"email\"]",
+				"action": "ENTER",			
+				"value": "Monica.Mason_vrxvy.mfiruose@mailosaur.io"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/first?currency=USD&sku=NCEDR-B&source=fastpass&term_length=365",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"App\"]/div/main/div/div/div/div/div[1]/form/button",
+				"action": "CLICK"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/review/7205d4bb-e591-405a-a85b-3ce29835068b/WlpaVEctUERNb0hDbVhWMlpsUUo=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"App\"]/div/main/div/div/div/div[2]/div[2]/div/div[1]/div/div[5]/div/button",
+				"action": "CLICK"
+			},	
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"card_number\"]",
+				"action": "ENTER",
+				"value": "${credit_card}"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"card_expiration\"]",
+				"action": "ENTER",
+				"value": "01/22"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"card_code\"]",
+				"action": "ENTER",
+				"value": "111"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"first_name\"]",
+				"action": "ENTER",
+				"value": "William"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"last_name\"]",
+				"action": "ENTER",
+				"value": "Sanders"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"company_name\"]",
+				"action": "ENTER",
+				"value": "tg"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"address\"]",
+				"action": "ENTER",
+				"value": "158  Wildwood Street"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"city\"]",
+				"action": "ENTER",
+				"value": "Chatham"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"App\"]/div/main/div/div/div/div[2]/div[1]/form/div/div[2]/div[4]/div/div/div[1]/input",
+				"action": "ENTER",
+				"value": "United States"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"App\"]/div/main/div/div/div/div[2]/div[1]/form/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div",
+				"action": "CLICK"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"App\"]/div/main/div/div/div/div[2]/div[1]/form/div/div[2]/div[5]/div/div/div/input",
+				"action": "ENTER",
+				"value": "Ohio"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"zip_code\"]",
+				"action": "ENTER",
+				"value": "44256"
+			},
+			{
+				"current_url": "https://buy-stage.malwarebytes.com/business/nss/payment/e8deb02f-900a-4bca-bb6f-c567d730ea6c/bEEzUERWRm92RWo0OFFmbFRNU0U=",
+				"selector_method": "xpath",
+				"selector_value": "//*[@id=\"phone\"]",
+				"action": "ENTER",
+				"value": "330-667-7325"
+			}
+		]		
+	}
+	
+
+}

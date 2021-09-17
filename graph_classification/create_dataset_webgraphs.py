@@ -5,6 +5,8 @@ from webgraph_factory.web_graph import WebGraphFactory
 from feature_extraction.extractor import FeatureExtractor
 import pickle
 
+from file_tools import get_html_file_paths_and_labels
+
 
 def create_webgraphs(html_files):
 
@@ -125,12 +127,14 @@ def _test():
 
 
 
+
 if __name__ == "__main__":
 
-    labels = ['login', 'other', 'other']
-    html_files = ['html/0.html', 'html/1.html', 'html/2.html']
+    #labels = ['login', 'other', 'other']
+    #html_files = ['html/0.html', 'html/1.html', 'html/2.html']
+    html_file_paths, labels = get_html_file_paths_and_labels(input_dir="dataset/html")
 
-    webgraphs = create_webgraphs(html_files)
+    webgraphs = create_webgraphs(html_file_paths)
     #dataset = create_dataset(webgraphs, labels)
     dataset = create_dataset_as_list(webgraphs, labels)
     

@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+ 
+
+<!--  Form Name: START -->
+
+
+ 
+<html lang="en">
+	<!-- Template_Component_Name: id.start.vm -->
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=10,11" />
+	<meta name="google-site-verification" content="AiXBfGep0BkRlClAYvcd83Nxaqkjvdm5vYvDFhspysg" />
+	<meta name="robots" content="NOINDEX,FOLLOW,NOARCHIVE,NOODP,NOYDIR" />
+	<base href="https://id.elsevier.com/"/>
+	<title>Welcome</title>
+		    <script type="text/javascript" src="assets/js/toolkit.js"></script>
+	<script type="text/javascript" src="assets/js/showHidePassword.js"></script>
+	<link rel="stylesheet" href="assets/css/elsevier/main.min.css" />
+	<link rel="shortcut icon" type="image/png"  href="assets/images/elsevier/mstile-144x144.png"/>
+		<script type="text/javascript">
+    	window.pageData = {
+        	page: {
+            	productName : "id",
+            	businessUnit : "ELS:RP:ST",
+        		            	environment : "prod",
+        		            	            	name : "SIGN_IN:START",
+            					            	language : "en-US",
+            	            	            	secondaryProductName : "SC/scopus",
+            					            	display : "",
+            	            	            	type : "AP-LP",
+            					            	experimentationUserID  : "",
+            					            	userPolicy  : "yellow",
+            					            	prompt  : "login",
+            					            	clientId  : "SCOPUS",
+            					            	platSite  : "SC/scopus",
+            	            	loadTime : ""
+        	},
+        	visitor : {
+        	ipAddress : "",
+               	accountId : "ae:278641",
+               	accountName : "ae:Scopus Preview",
+    			                accessType : "ae:ANON::GUEST:",
+        		userId : "ae:13341253"
+	        },
+    form : {
+   	   		step : "start",
+   	   	   		type : "loginregistration",
+   	   	   		errorType : ""
+   	    	}
+    };
+   
+	</script>
+	
+		<script src="//assets.adobedtm.com/4a848ae9611a/ea85aabe063c/launch-89fabdbe31df.min.js"></script>
+	
+
+</head>
+<body>
+	<a class="accessibility-link-skip" href="#maincontent">Skip to content</a> 
+<header class="client-info-header">	
+	<div><img class="els-client-logo" src="/assets/images/SC/scopus/logo.svg" onError="this.onerror=null;this.src='assets/images/elsevier/elsevier.svg';" style="width: 100%;" alt="Scopus">		
+	</div>
+</header>	<div class="els-hero-image"  style="background-image: url('/assets/images/SC/scopus/page.jpg')">
+		<section class="container-fluid">
+			<main id="maincontent">
+				
+<div class="sec-A">
+			<form action="https://id.elsevier.com/as/authorization.oauth2?platSite=SC%2Fscopus&ui_locales=en-US&scope=openid+profile+email+els_auth_info+els_analytics_info+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Aindv_identity&response_type=code&redirect_uri=https%3A%2F%2Fwww.scopus.com%2Fauthredirect.uri%3FtxGid%3D6f6f747f62609fb0bc694fc8a23e7bdf&state=userLogin%7CtxId%3D180A38C1B4FFCC33390E58340926E9AC.i-0d576e76523082807%3A8&authType=SINGLE_SIGN_IN&client_id=SCOPUS&&prompt=none" method="post" novalidate class="close-form" name="close-form">
+			<button id="bdd-els-close" class="els-close-btn" type="submit" aria-label="Cancel" name="close" value="true">
+			<img src="assets/images/elsevier/close.svg" alt="Cancel"/>
+		</button>
+		</form>
+			<img src="assets/images/elsevier/elsevier.svg" alt="Elsevier" class="els-logo">
+	</div>				<form method="POST" action="/as/D03s3/resume/as/authorization.ping?client_id=SCOPUS&state=userLogin%7CtxId%3D180A38C1B4FFCC33390E58340926E9AC.i-0d576e76523082807%3A8" autocomplete="off" name="elsForm" novalidate>
+	
+	<div class="sec-B">
+		<h1 class="els-h1-txt">Welcome</h1>
+		<h2 class="els-h2-txt">Enter your email to continue with <span class="bold">Scopus</span></h2>
+	</div>
+	
+	
+	<div class="sec-C">		
+		<div class="form-row">
+			<input   type="text" id="bdd-email" name="pf.username" aria-required="true" aria-labelledby="emaillabel emailerror" required autocomplete="email" aria-autocomplete="inline" autofocus onkeyup="enableContinueButton();"/>
+			<span class="bar"></span>
+			<label id="emaillabel" for="bdd-email">Email</label>
+					</div>				
+	</div>
+
+	<!-- Section D : Primary, secondary call to action button and Agreement & terms -->
+	<div class="sec-D">
+		<div>
+			<button type="submit" class="els-primaryBtn continueBtn" id="bdd-elsPrimaryBtn" value="emailContinue" name="action">Continue</button>
+		</div>
+					<div>
+				<button type="submit" class="els-secondaryBtn btn-border signInInstBtn" id="bdd-elsSecondaryBtn" value="shibbolethSignIn" name="action">Sign in via your institution</button>
+			</div>
+			</div>
+</form>
+<script>
+	document.addEventListener("DOMContentLoaded", function(event) {
+    document.getElementById('bdd-elsPrimaryBtn').disabled = "true";
+  
+});
+function enableContinueButton() {
+	var nameInput = document.getElementById('bdd-email').value;        
+	document.getElementById('bdd-elsPrimaryBtn').removeAttribute("disabled");
+}
+</script>
+			</main>
+		</section>
+	</div>	
+	<footer class="els-footer">
+    <div class="els-footer-logo">
+        <a title="Go to Elsevier Homepage" href="http://www.elsevier.com/" target="_blank"><img src="assets/images/elsevier/elsevier.svg" alt="Elsevier"></a>
+    </div>
+    <div class="els-document-links">
+        <div class="els-document-link-row">
+        <ul class="els-footer-links" style="list-style:none">
+           <li><a href="https://www.elsevier.com/about" class="els-document-link anchor" target="_tab"><span class="anchor-text">About Elsevier</span></a></li>     
+           <li><a href=https://www.elsevier.com/legal/elsevier-website-terms-and-conditions class="els-document-link anchor" target="_blank"><span class="anchor-text">Terms and conditions</span></a></li>
+           <li><a href=https://www.elsevier.com/legal/privacy-policy class="els-document-link anchor" target="_blank"><span class="anchor-text">Privacy policy</span></a></li>
+           <li><a href="https://service.elsevier.com/app/home/supporthub/elsevieraccess/" class="els-document-link anchor" target="_blank"><span class="anchor-text">Help</span></a></li>
+        </div>
+        <div class="els-document-link-row">We use cookies to help provide and enhance our service. By continuing you agree to the <a href="https://service.elsevier.com/app/answers/detail/a_id/28037/supporthub/elsevieraccess/p/15095/" class="els-document-link cookie anchor" target="_blank"> <span class="anchor-text"><strong>use of cookies</strong></span></a>.</div>
+    </div>
+    <div class="els-footer-reed-logo">
+        <a title="Go to RELX Group Homepage" href="http://www.reedelsevier.com/" target="_blank">
+            <img src="assets/images/elsevier/RelexLogo.svg" alt="RELXGroup">
+        </a>
+    </div>
+</footer>	<script type="text/javascript">
+					
+	window.pageData.page.loadTime = performance ? (Math.round(performance.now())).toString() : "";
+	pageDataTracker.trackPageLoad();
+</script>
+
+	
+	
+<!--   idplusCommonScript.vm  -->
+<script type="text/javascript">
+    //It helps to toggle 'aria-checked' value based on checkbox state change 
+    function changeCheckbox(event) {
+        var item = document.getElementById('bdd-staySignedIn');
+        if(item.getAttribute('aria-checked') == "true"){
+            item.setAttribute('aria-checked', "false");
+        }else{
+            item.setAttribute('aria-checked', "true");
+        }
+    }    
+
+    function mouseOverChevronOrange(chooseBtn) {
+        chooseBtn.querySelector('.els-chevron').src = "assets/images/elsevier/chevron_orange.svg"
+    }
+
+    function mouseOutChevronBlue(chooseBtn) {
+        chooseBtn.querySelector('.els-chevron').src = "assets/images/elsevier/chevron_blue.svg"
+    }
+
+    //Called once DOM conetent loaded on window 
+    function initPage(){
+        if(document.getElementById("bdd-staySignedIn")){
+            document.getElementById("bdd-staySignedIn").addEventListener("click", changeCheckbox);
+        }
+    }
+    window.addEventListener('DOMContentLoaded', initPage);
+
+    function disableBtn(form) {
+        var primaryButton = document.getElementById("bdd-elsPrimaryBtn");
+        if (primaryButton) {
+            primaryButton.disabled = true;
+            primaryButton.style.cursor = 'not-allowed';
+        }
+        return true;			
+    }
+
+    //This helper function to handle while browser cookie is disabled then template need to enable info message
+    function checkCookies(){
+        if (navigator.cookieEnabled === true) {
+            document.getElementsByClassName('cookieInfo')[0].remove();
+        }else{
+            document.getElementsByClassName('cookieInfo')[0].style.display = "block";
+            if(pageData && pageData.form)
+                pageData.form.errorType = "ae-cookie:error - cookies disabled";
+        }
+    }
+
+    function redirectOnLoad(){
+		var uri	=getCookie("SNF");
+		if(uri){
+            uri=uri+"&isSNFRedirected=Y";
+			window.location = uri;
+		}
+	}
+	
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    
+    // Function to adjust the position of label field if it overlaps input text field
+    function adjustLabelPosition() {
+        var label = document.getElementById("emaillabel") || document.getElementById("codelabel"); 
+        var input = document.getElementById("bdd-email") || document.getElementById("bdd-activationCode");
+        var labelHeight = label && (label.clientHeight || label.scrollHeight);
+        var inputHeight = input && (input.clientHeight || input.scrollHeight);
+        var newTopValue = "";
+        if(labelHeight > inputHeight) {
+            newTopValue = -(labelHeight/inputHeight) + 0.5;
+            label.style.top = newTopValue + "rem";
+            input.addEventListener('focus', function () {
+                if(label.clientHeight > input.clientHeight) {
+                    label.style.top = newTopValue - 0.5 + "rem";
+                } else {
+                    label.style.top = newTopValue + "rem";
+                }
+            });
+            input.addEventListener('blur', function () {
+                if(!input.value) {
+                    label.style.top = newTopValue + "rem";
+                }
+            });
+        }
+    }
+
+    	
+	// Javascript changes for keyboard interaction in wayf
+	var wayfSearchResultList = document.getElementById('bdd-institution-resultList');
+	var index = 0;
+	var sizeOfEachElement = 36;
+	var currentSelection;
+	var DOWN_ARROW_KEY_CODE = 40;
+	var UP_ARROW_KEY_CODE = 38;
+	var TAB_KEY_CODE = 9;
+	var ENTER_KEY_CODE = 13;
+
+
+
+
+	function keyboardInteraction(event) {
+
+	    if (wayfSearchResultList != null) {
+	        var len = wayfSearchResultList.getElementsByTagName('button').length - 1;
+             
+	        if (event.which === DOWN_ARROW_KEY_CODE) {
+	            index++;
+	            if (index > len) {
+	                index = 0;
+	            }
+	            wayfSearchResultList.getElementsByTagName('button')[index].focus();
+	            preventDefault(event);
+	            if (index > 1) {
+	                wayfSearchResultList.scrollTop += sizeOfEachElement;
+	            }
+	            currentSelection = wayfSearchResultList.getElementsByTagName('button')[index];
+	        } else if (event.which === UP_ARROW_KEY_CODE) {
+	            index--;
+	            if (index < 0) {
+	                index = len;
+	            }
+	            wayfSearchResultList.getElementsByTagName('button')[index].focus();
+	            preventDefault(event);
+	            if (index == len) {
+	                wayfSearchResultList.scrollTop += sizeOfEachElement;
+	            }
+	            wayfSearchResultList.scrollTop -= sizeOfEachElement;
+
+	            currentSelection = wayfSearchResultList.getElementsByTagName('button')[index];
+	        } else if (event.which === TAB_KEY_CODE) {
+
+	            var txt = currentSelection.textContent || currentSelection.innerText;
+	            document.getElementById("bdd-email").value = txt;
+	            wayfSearchResultList.style.display = "none";
+	            
+
+	        }  
+	    }
+	}
+
+
+
+	window.addEventListener('DOMContentLoaded', initWayfPage);
+
+	function initWayfPage() {
+		if (wayfSearchResultList != null) {
+		    wayfSearchResultList.getElementsByTagName('button')[0].focus();
+			currentSelection=wayfSearchResultList.getElementsByTagName('button')[0];
+		    document.addEventListener('keydown', function(event) {
+		        keyboardInteraction(event);
+		    }, false);
+			
+			document.getElementById("bdd-els-searchBtn").addEventListener("keypress",  function(event) {
+		       if (event.which == ENTER_KEY_CODE && currentSelection != null) {
+				    preventDefault(event);
+		            currentSelection.click();
+		        }
+		    }, false);
+		    
+		    var el = document.querySelectorAll('.els-institution-form');
+			for(x=0;x<el.length;x++){
+				el[x].addEventListener('mouseover', function(event) {
+		        	wayfSearchResultList.getElementsByTagName('button')[0].blur();
+		    	}, false);
+			}
+		}
+	}
+		
+	function preventDefault(e) {
+	    e = e || window.event;
+	    if (e.preventDefault)
+	        e.preventDefault();
+	    e.returnValue = false;
+	}
+</script>
+	<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"69052fc8489ac3f2","token":"f1453eb18c4d4d8ca53c0ad96f23fa50","version":"2021.8.1","si":10}'></script>
+</body>
+</html>

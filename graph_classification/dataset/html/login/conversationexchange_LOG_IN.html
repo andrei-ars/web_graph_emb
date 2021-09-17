@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LOG IN</title>
+<meta name="robots" content="noindex,nofollow">
+<style type="text/css">
+   
+
+@font-face {
+	font-family: 'MainFont Web';
+	font-style: normal;
+	font-weight: 400;
+	src: url("/fonts/TitilliumWeb-Regular.otf") format("opentype"),
+		url("/fonts/TitilliumWeb-Regular.woff") format("woff"),
+		url("/fonts/TitilliumWeb-Regular.ttf") format("truetype")
+}
+
+
+@font-face {
+	font-family: "Armata";
+	font-weight: 400;
+	font-style: normal;
+	src: url("/fonts/Armata-Regular.otf")
+}
+
+</style>
+<link rel="icon" type="image/png" href="/images/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+<link rel="stylesheet" type="text/css" href="/CSS/jquery-ui-flat.min.css">
+<script type="text/javascript" src="/javaScript/jsLoader.php?ver=0012&type=js&isLog=false&IsMob=false&sc=comDesk"></script>
+<link rel="stylesheet" type="text/css" href="/CSS/ce_style_modern-min.css?ver=0012">
+<link href="/fontawesome/css/all.css" rel="stylesheet"> 
+<script language="JavaScript" type="text/JavaScript">
+//<![CDATA[
+var ce_lg={};
+ce_lg.LG="en";
+ce_lg.YES="Yes";
+ce_lg.LG_NO="No";
+ce_lg.LG_CANCEL="Cancel";
+ce_lg.CLOSE_WINDOW="Close Window";
+ce_lg.ADBLOCK_BLOCK_MSG="Our website is made possible by displaying online advertisements.\r\n<br>\r\nPlease consider supporting us by adding an exception<BR>to your ad blocker.\r\n<br>\r\nThanks!";
+ce_lg.ERROR="Error";
+//var absPath='https://www.conversationexchange.com';
+var absPath='';
+var isUserLogged=false;
+var isMobile=false;
+var isTablet=false;
+var CE_ERROR=null;
+//]]>
+</script>
+<script type="text/javascript" src="/javaScript/jsLoader.php?ver=0012&type=js&isLog=false&IsMob=false&sc=login"></script>
+</head>
+<body>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<div id="header">
+<div id="header-top">
+<table id="header-table">
+<tr>
+<td>
+<a href="/"><img src="/images/logo.png" id="imgMainLogo"></a>
+</td>
+<td>
+<a href="/members/login.php?lg=en&signup_expl=yes"><i class="fas fa-sign-in-alt"></i> LOG IN</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/members/signupFirstStage.php?lg=en"><i class="fas fa-user-plus"></i> SIGN UP</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="container">
+<div style="float: left; min-width: 200px;">
+<div class="left_col_innertube">
+<div id="cssmenu">
+<ul>
+<li>
+<a href="/index.php?lg=en">
+
+<i class="fas fa-home"></i>&nbsp;&nbsp;HOME</a>
+</li>
+<li class='has-sub'><a href=""><img src="/images/flags/en.gif">&nbsp;&nbsp;language</a>
+<ul class="flags">
+<li><a href='/members/login.php?lg=en&signup_expl=yes' data-act='chlg' data-lg='en'><img src="/images/flags/en.gif">English</a></li>
+<li><a href='/members/login.php?lg=es&signup_expl=yes' data-act='chlg' data-lg='es'><img src="/images/flags/es.gif">Español</a></li>
+<li><a href='/members/login.php?lg=fr&signup_expl=yes' data-act='chlg' data-lg='fr'><img src="/images/flags/fr.gif">Français</a></li>
+<li><a href='/members/login.php?lg=de&signup_expl=yes' data-act='chlg' data-lg='de'><img src="/images/flags/de.gif">Deutsch</a></li>
+<li><a href='/members/login.php?lg=it&signup_expl=yes' data-act='chlg' data-lg='it'><img src="/images/flags/it.gif">Italiano</a></li>
+<li><a href='/members/login.php?lg=pt&signup_expl=yes' data-act='chlg' data-lg='pt'><img src="/images/flags/pt.png">Português</a></li>
+<li><a href='/members/login.php?lg=ar&signup_expl=yes' data-act='chlg' data-lg='ar'><img src="/images/flags/ar.gif"> العربية</a></li>
+<li><a href='/members/login.php?lg=jp&signup_expl=yes' data-act='chlg' data-lg='jp'><img src="/images/flags/jp.gif">日本語</a></li>
+<li><a href='/members/login.php?lg=cn&signup_expl=yes' data-act='chlg' data-lg='cn'><img src="/images/flags/cn.png">中文</a></li>
+<li><a href='/members/login.php?lg=kr&signup_expl=yes' data-act='chlg' data-lg='kr'><img src="/images/flags/kr.gif">한국어</a></li>
+<li><a href='/members/login.php?lg=ru&signup_expl=yes' data-act='chlg' data-lg='ru'><img src="/images/flags/ru.gif">Pусский</a></li>
+</ul>
+</li>
+<li><a href="/search.php?lg=en"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</a></li>
+<li class='has-sub'><a href="#"><i class="fas fa-toolbox"></i>&nbsp;&nbsp;Resources</a>
+<ul>
+<li><a href="/resources/tips.php?lg=en">Tips</a></li>
+<li><a href="/resources/tutorials.php?lg=en">Tutorials</a></li>
+<li><a href="/resources/phrases/index.php?lg=en">Survival Phrases</a></li>
+<li><a href="/resources/jks/index.php?lg=en">Learn with jokes</a></li>
+<li><a href="/resources/verbs/spanish-verbs.php?lg=en">Spanish Verbs</a></li>
+<li><a href="/resources/spanish_videos.php?lg=en">Spanish Videos</a></li>
+<li><a href="/resources/american_pronunciation_videos.php?lg=en">American Pronunciation</a></li>
+<li><a href="/resources/french_podcast.php?lg=en">French Listening</a></li>
+<li><a href="/resources/pronunciation/it/index.php?lg=en">Italian pronunciation</a></li>
+<li><a href="/resources/conversation-topics.php?lg=en">Conversation Topics</a></li>
+<li class='last'><a href="/resources/keyboard-language.php?lg=en">Change keyboard language</a></li>
+</ul>
+</li>
+<li><a href="/news.php?lg=en"><i class="fas fa-newspaper"></i>&nbsp;&nbsp;NEWS</a></li>
+<li><a href="/sep_files/FAQ.php?lg=en"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;HELP</a></li>
+<li><a href="/online-store.php?lg=en"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;STORE</a></li>
+<li><a href="/members/membership.php?lg=en"><i class="fas fa-award"></i>&nbsp;&nbsp;MEMBERSHIP</a></li>
+<li class='has-sub'><a href="#"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
+<ul>
+<li><a href="/buy-us-a-beer.php?lg=en">BUY US A BEER</a></li>
+<li><a href="/contactus.php?lg=en">Contact us</a></li>
+<li><a href="/sep_files/policy.php?lg=en">Terms of Service</a></li>
+<li><a href="/sep_files/privacy.php?lg=en">Privacy Policy</a></li>
+<li><a href="/advertise.php?lg=en">Advertise</a></li>
+<li><a href="/testimonials.php?lg=en">Testimonials</a></li>
+<li data-icon="false" class='last'><a href="/sitemap.php">Site Map</a></li>
+</ul>
+</li>
+</div>
+</div>
+</div>
+<div style="float: left;width:80%">
+<div class="innertube">
+<script type="text/javascript">
+// <![CDATA[
+ce_lg.FAQ="FAQ";
+ce_lg.EMAIL_NOT_VALID="The e-mail Address is not valid";
+// ]]>
+</script>
+<div align="center">
+<form action="" method="POST" name="login" id="loginForm">
+<table width="470px" border="0" cellpadding="7" cellspacing="0" class="cetable">
+<tr class="table-heading big12">
+<td colspan="2"><div style="text-align:center">LOG IN</div></td>
+</tr>
+<tr class="first-row-padding">
+<td style="width:130px" valign="top"><div style="text-align:right">e-mail Address</div></td>
+<td>
+<div style="text-align:left">
+<input name="Email" type="text" id="Email" value="" size="35" maxlength="100" class="ui-widget">
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top" style="padding-top: 11px;">
+<div style="text-align:right">Password</div>
+</td>
+<td>
+<div style="text-align:left">
+<input name="Password" type="password" id="Password" size="25" maxlength="20" class="ui-widget">
+<br><span class="small09">
+<a href="new_password.php?lg=en">Forgot your password?</a>
+</span>
+</div>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+<div style="text-align:left">
+<div style="float: left; padding-right: 7px; padding-bottom: 20px;">
+<input type="checkbox" name="autologin" value="1">
+</div>
+<div>
+Remember me
+<span class="small09">(Uncheck on a shared computer)</span>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div style="text-align:center;padding-bottom: 10px;">
+<input type="hidden" name="lg" value="en">
+<button id="submitButton">LOG IN</button>
+</div>
+</td>
+</tr>
+</table>
+</form>
+</div>
+<p align="center" style="padding-top: 25px;"><span style="padding-right: 20px; font-weight: bold;">Not registered?</span>
+<a href="/members/signupFirstStage.php?lg=en" class="button-link">Sign up now!</a>
+</p>
+<p>ConversationExchange.com membership is completely <strong>FREE</strong> and enables you to send and receive messages to potential conversation exchange partners, without disclosing your e-mail address. You can edit or delete your membership details at any time.</p>
+</div>
+</div> <div id="footer">
+<a href="/contactus.php?lg=en">Contact us</a> | <a href="/sep_files/policy.php?lg=en">Terms of Service</a> | <a href="/sep_files/privacy.php?lg=en">Privacy Policy</a>
+| <a href="/advertise.php">Advertise</a>
+
+| <a href="/sitemap.php">Site Map</a>
+
+© 2005-2021 ConversationExchange.com
+</div>
+</div>
+<div id="ajaxloading" style="background: white; padding:0; overflow: hidden; display: none; z-index: 100; position: absolute; top:0px; left:0px; width: 100%; height: 100%; opacity: .5; filter: alpha(opacity=50);">
+<img id="ajaxLoadingImg" src="/images/ajax_spinner.gif" style="display: block; margin-top: 20%; margin-left: 43%;">
+</div>
+<div id="dialogmsg" style="display: none; padding:0; overflow: hidden;"><img src="/images/ajax_spinner_bar.gif"></div>
+<section class='slidingInfoParent' style='display: none;'><span id="slidingInfo" class="slidingInfoChild confmessage"></span></section>
+<script async src="/javaScript/cookieconsent.min.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+			
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-392283-1', 'auto');
+		ga('set', 'anonymizeIp', true);
+	    ga('require', 'displayfeatures');
+		ga('send', 'pageview');
+	
+	window.cookieconsent_options = {
+		"message":"Cookies allow us to offer our services. By using our services you agree to our use of cookies.",
+		"dismiss":"Close Window",
+		"learnMore":"More information",
+		"link":"https://ico.org.uk/for-organisations/guide-to-pecr/cookies-and-similar-technologies/",
+		"theme":"dark-bottom"
+};
+</script>
+<noscript class="warning"> You need to have JavaScript enabled in order to view this page correctly! </noscript>
+</body>
+</html>

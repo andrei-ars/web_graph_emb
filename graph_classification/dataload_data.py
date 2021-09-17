@@ -51,8 +51,9 @@ class WebGraphDataset():
     #def __init__(self, path=None):
     #    super().__init__()
 
-    def __init__(self):
+    def __init__(self, dataset_path):
 
+        self.dataset_path = dataset_path
         #with open(path, "rb") as fp:
         #    dataset = pickle.load(fp)
         #    print(dataset)
@@ -69,7 +70,6 @@ class WebGraphDataset():
     def download(self):
         # Download to `self.raw_dir`.
         path = download_url(url, self.raw_dir)
-        ...
 
     def process(self):
         #edges = pd.read_csv('./graph_edges.csv')
@@ -77,7 +77,7 @@ class WebGraphDataset():
         self.graphs = []
         self.labels = []
 
-        fp = open("data/dataset.dump", "rb")
+        fp = open(self.dataset_path, "rb")
         dataset = pickle.load(fp)
         fp.close()
         label2index = {'login': 0, 'other': 1}
@@ -162,6 +162,6 @@ class WebGraphDataset():
 
 if __name__ == "__main__":
 
-    dataset = WebGraphDataset("data/dataset.dump")
+    dataset = WebGraphDataset("dataset/dataset.dump")
     #graph, label = dataset[0]
     #print(graph, label)

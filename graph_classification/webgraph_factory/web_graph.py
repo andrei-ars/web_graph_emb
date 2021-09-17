@@ -18,7 +18,7 @@ from src.utils.general_utils import lxml2xpath
 from src.utils.similarity import calculate_elements_similarity
 from src.config import config
 
-from element import PageElement
+from webgraph_factory.element import PageElement
 
 from src.state.ui_parser import parse as ui_parser_parse
 

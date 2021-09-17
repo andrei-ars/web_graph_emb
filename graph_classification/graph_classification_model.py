@@ -4,23 +4,6 @@ from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
 from dataload_data import WebGraphDataset
 
-#WebGraphDataset("data/dataset.dump")
-
-#dataset = TUDataset(root='data/TUDataset', name='MUTAG')
-#dataset = dataset.shuffle()
-
-#dataset = WebGraphDataset("data/dataset.dump")
-dataset = WebGraphDataset()
-train_dataset = dataset[:2]
-test_dataset = dataset[2:]
-
-print(dataset[0])
-print(type(dataset[0]))
-#sys.exit()
-
-train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=2, shuffle=False)
-
 from torch.nn import Linear
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
@@ -39,7 +22,7 @@ class GCN(torch.nn.Module):
 
     def forward(self, x, edge_index, batch):
         # 1. Obtain node embeddings 
-        x = x.float() # TO FLOAT!
+        x = x.float() # to float!
 
         x = self.conv1(x, edge_index)
         x = x.relu()
@@ -57,7 +40,7 @@ class GCN(torch.nn.Module):
         return x
 
 
-class Graph_Classification_Model:
+class GraphClassificationModel:
 
     def __init__(self):
 
@@ -66,17 +49,25 @@ class Graph_Classification_Model:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.criterion = torch.nn.CrossEntropyLoss()
 
-    def train(self, num_epochs=100):
+    def train(self, dataset, batch_size, num_epochs=100):
+
+        train_dataset = dataset[:2]
+        test_dataset = dataset[2:]
+        print(dataset[0])
+        print(type(dataset[0]))
+        self.train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        self.test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
         for epoch in range(1, num_epochs):
-            self.train_epoch()
-            train_acc = self.test(train_loader)
-            test_acc = self.test(test_loader)
+            self.train_epoch(self.train_loader)
+            train_acc = self.test(self.train_loader)
+            test_acc = self.test(self.test_loader)
             print(f'Epoch: {epoch:03d}, Train Acc: {train_acc:.4f}, Test Acc: {test_acc:.4f}')
 
-    def train_epoch(self):
+    def train_epoch(self, loader):
         self.model.train()
 
-        for data in train_loader:  # Iterate in batches over the training dataset.
+        for data in loader:  # Iterate in batches over the training dataset.
             print(data)
             out = self.model(data.x, data.edge_index, data.batch)  # Perform a single forward pass.
             loss = self.criterion(out, data.y)  # Compute the loss.
@@ -87,12 +78,11 @@ class Graph_Classification_Model:
     def test(self, loader):
         print("try eval")
         self.model.eval()
-        print("ok")
         correct = 0
         for data in loader:  # Iterate in batches over the training/test dataset.
-            print("data.x:", data.x)
-            print("data.edge_index:", data.edge_index)
-            print("data.batch:", data.batch)
+            #print("data.x:", data.x)
+            #print("data.edge_index:", data.edge_index)
+            #print("data.batch:", data.batch)
             out = self.model(data.x, data.edge_index, data.batch)
             pred = out.argmax(dim=1)  # Use the class with highest probability.
             correct += int((pred == data.y).sum())  # Check against ground-truth labels.
@@ -101,5 +91,6 @@ class Graph_Classification_Model:
 
 if __name__ == "__main__":
 
-    cl_model =  Graph_Classification_Model()
-    cl_model.train(num_epochs=21)
+    cl_model = GraphClassificationModel()
+    dataset = WebGraphDataset("dataset/dataset.dump")
+    cl_model.train(dataset, batch_size=2, num_epochs=21)

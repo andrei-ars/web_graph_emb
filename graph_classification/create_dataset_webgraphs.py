@@ -2,7 +2,7 @@
 #from selenium.webdriver.common.by import By
 
 from webgraph_factory.web_graph import WebGraphFactory
-from webgraph_factory.feature_extraction.extractor import FeatureExtractor
+from feature_extraction.extractor import FeatureExtractor
 import pickle
 
 
@@ -83,7 +83,8 @@ def create_dataset_as_list(webgraphs, labels):
     return dataset
 
 
-if __name__ == "__main__":
+def _test():
+
 
     url = "https://demo1.testgold.dev/login"
 
@@ -108,6 +109,7 @@ if __name__ == "__main__":
     print("webgraph:", webgraph)
     print("output:", webgraph.torch)
     print("type:", type(webgraph.torch))
+
     #webgraph.visualize()
     #x, edge_index = webgraph.get_data()
     #print(x)
@@ -122,6 +124,9 @@ if __name__ == "__main__":
     #            webgraph.save_to_csv_files(graph_id, fp_edges, fp_properties, fp_features)
 
 
+
+if __name__ == "__main__":
+
     labels = ['login', 'other', 'other']
     html_files = ['html/0.html', 'html/1.html', 'html/2.html']
 
@@ -131,5 +136,5 @@ if __name__ == "__main__":
     
     print(dataset)
 
-    with open("dataset.dump", "wb") as fp: 
+    with open("dataset/dataset.dump", "wb") as fp: 
         pickle.dump(dataset, fp)

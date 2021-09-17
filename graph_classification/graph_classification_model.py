@@ -63,11 +63,11 @@ class Graph_Classification_Model:
 
         self.model = GCN(hidden_channels=64)
         print(self.model)
-        self.optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.criterion = torch.nn.CrossEntropyLoss()
 
-    def train(self):
-        for epoch in range(1, 10):
+    def train(self, num_epochs=100):
+        for epoch in range(1, num_epochs):
             self.train_epoch()
             train_acc = self.test(train_loader)
             test_acc = self.test(test_loader)
@@ -84,21 +84,23 @@ class Graph_Classification_Model:
             self.optimizer.step()  # Update parameters based on gradients.
             self.optimizer.zero_grad()  # Clear gradients.
 
-    def test(loader, self):
-         model.eval()
+    def test(self, loader):
+        print("try eval")
+        self.model.eval()
+        print("ok")
 
-         correct = 0
-         for data in loader:  # Iterate in batches over the training/test dataset.
-             print("data.x:", data.x)
-             print("data.edge_index:", data.edge_index)
-             print("data.batch:", data.batch)
-             out = self.model(data.x, data.edge_index, data.batch)
-             pred = out.argmax(dim=1)  # Use the class with highest probability.
-             correct += int((pred == data.y).sum())  # Check against ground-truth labels.
-         return correct / len(loader.dataset)  # Derive ratio of correct predictions.
+        correct = 0
+        for data in loader:  # Iterate in batches over the training/test dataset.
+            print("data.x:", data.x)
+            print("data.edge_index:", data.edge_index)
+            print("data.batch:", data.batch)
+            out = self.model(data.x, data.edge_index, data.batch)
+            pred = out.argmax(dim=1)  # Use the class with highest probability.
+            correct += int((pred == data.y).sum())  # Check against ground-truth labels.
+        return correct / len(loader.dataset)  # Derive ratio of correct predictions.
 
 
 if __name__ == "__main__":
 
     cl_model =  Graph_Classification_Model()
-    cl_model.train()
+    cl_model.train(num_epochs=21)

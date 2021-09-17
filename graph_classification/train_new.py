@@ -14,6 +14,10 @@ dataset = WebGraphDataset()
 train_dataset = dataset[:2]
 test_dataset = dataset[2:]
 
+print("train_dataset size:", len(train_dataset))
+print("est_dataset size:", len(test_dataset))
+
+
 print(dataset[0])
 print(type(dataset[0]))
 #sys.exit()
@@ -77,9 +81,9 @@ def test(loader):
 
      correct = 0
      for data in loader:  # Iterate in batches over the training/test dataset.
-         print("data.x:", data.x)
-         print("data.edge_index:", data.edge_index)
-         print("data.batch:", data.batch)
+         #print("data.x:", data.x)
+         #print("data.edge_index:", data.edge_index)
+         #print("data.batch:", data.batch)
          out = model(data.x, data.edge_index, data.batch)
          pred = out.argmax(dim=1)  # Use the class with highest probability.
          correct += int((pred == data.y).sum())  # Check against ground-truth labels.

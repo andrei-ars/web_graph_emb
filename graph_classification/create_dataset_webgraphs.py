@@ -6,6 +6,7 @@ from feature_extraction.extractor import FeatureExtractor
 import pickle
 
 from file_tools import get_html_file_paths_and_labels
+import random
 
 
 def create_webgraphs(html_files):
@@ -18,6 +19,7 @@ def create_webgraphs(html_files):
     webgraphs = []
 
     for path in html_files:
+        print("Reading the file {}".format(path))
         with open(path) as fp:
             html = fp.read()
         webgraph = state_factory.get_webgraph(html, url)
@@ -133,12 +135,19 @@ if __name__ == "__main__":
     #labels = ['login', 'other', 'other']
     #html_files = ['html/0.html', 'html/1.html', 'html/2.html']
     html_file_paths, labels = get_html_file_paths_and_labels(input_dir="dataset/html")
+    path_label = list(zip(html_file_paths, labels))
+    random.shuffle(path_label)
+    html_file_paths = [x[0] for x in path_label]
+    labels = [x[1] for x in path_label]    
 
     webgraphs = create_webgraphs(html_file_paths)
     #dataset = create_dataset(webgraphs, labels)
     dataset = create_dataset_as_list(webgraphs, labels)
     
-    print(dataset)
+    #print(dataset)
 
     with open("dataset/dataset.dump", "wb") as fp: 
         pickle.dump(dataset, fp)
+
+    print("labels:", labels)
+    print("DONE")

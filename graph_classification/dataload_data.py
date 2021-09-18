@@ -80,7 +80,7 @@ class WebGraphDataset():
         fp = open(self.dataset_path, "rb")
         dataset = pickle.load(fp)
         fp.close()
-        label2index = {'login': 0, 'other': 1}
+        label2index = {'login': 0, 'non_login': 1}
 
         for graph_data in dataset:
             graph_id = graph_data['id']

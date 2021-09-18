@@ -7,6 +7,6 @@ from graph_classification_model import GraphClassificationModel
 
 if __name__ == "__main__":
 
-    cl_model = GraphClassificationModel()
     dataset = WebGraphDataset("dataset/dataset.dump")
-    cl_model.train(dataset, num_epochs=21)
+    cl_model = GraphClassificationModel(dataset)
+    cl_model.train(batch_size=2, num_epochs=30)

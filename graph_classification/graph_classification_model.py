@@ -1,4 +1,5 @@
 import sys
+import random
 import torch
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
@@ -12,7 +13,7 @@ from torch_geometric.nn import global_mean_pool
 
 class GCN(torch.nn.Module):
 
-    def __init__(self, hidden_channels):
+    def __init__(self, dataset, hidden_channels):
         super(GCN, self).__init__()
         torch.manual_seed(12345)
         self.conv1 = GCNConv(dataset.num_node_features, hidden_channels)
@@ -42,19 +43,31 @@ class GCN(torch.nn.Module):
 
 class GraphClassificationModel:
 
-    def __init__(self):
+    def __init__(self, dataset):
 
-        self.model = GCN(hidden_channels=64)
+        self.dataset = dataset
+        self.model = GCN(self.dataset, hidden_channels=64)
         print(self.model)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.criterion = torch.nn.CrossEntropyLoss()
 
-    def train(self, dataset, batch_size, num_epochs=100):
+    def train(self, batch_size, num_epochs=100, valid_percent=0.3):
 
-        train_dataset = dataset[:2]
-        test_dataset = dataset[2:]
+        dataset = self.dataset
+        #random.shuffle(dataset)
+        valid_size = int(valid_percent * len(dataset))
+        train_size = len(dataset) - valid_size
+
+        train_dataset = dataset[:train_size]
+        test_dataset = dataset[train_size:]
+
+        print("dataset size:", len(dataset))
+        print("train_dataset:", len(train_dataset))
+        print("test_dataset:", len(test_dataset))
+
         print(dataset[0])
         print(type(dataset[0]))
+        #sys.exit()
         self.train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
         self.test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
@@ -91,6 +104,6 @@ class GraphClassificationModel:
 
 if __name__ == "__main__":
 
-    cl_model = GraphClassificationModel()
     dataset = WebGraphDataset("dataset/dataset.dump")
-    cl_model.train(dataset, batch_size=2, num_epochs=21)
+    cl_model = GraphClassificationModel(dataset)
+    cl_model.train(batch_size=1, num_epochs=10)

@@ -1,0 +1,50 @@
+### Agent Training ###
+agent:
+  total_episodes: 200
+  episodes_before_update: 30
+  max_steps: 30
+  solved_repeat: 5 # Found bugs
+
+### Paths ###
+paths:
+  model_dir: "saved_model/" 
+  logs_dir: "logs/"
+  targets: "data/targets.json"
+  datagen: "data/datagen.json"
+  ui_parser: "" # path to ui parser script, if empty will use built-in
+
+### NN Training ###
+nn:
+  batch_size: 64
+  optimizer: "adam" # ["adam"]
+  loss_fn: "mse" # ["mse"]
+  policy: "categorical" #['categorical','boltzmann','epsilon_greedy', 'gumbel_softmax']
+  learning_rate: 0.01
+  update_rate: 0.005
+  discount: 0.99
+  epsilon_decay: 0.99
+  lr_scheduler: "step_decay" #[null,"step_decay"]
+ 
+### Environment ###
+env:
+  action_types: ["CLICK","ENTER","SELECT"]
+  discretization: 5
+  pos_reward: 1
+  neg_reward: -1
+  use_fasttext: False
+  use_db: True
+
+### Web Driver ###
+webdriver:
+  mock: False
+  dump_path: "dumps/demo4_dump/"
+  browser: "Chrome" # ["Chrome"]
+  arguments:
+    - "--ignore-certificate-errors"
+    - "--test-type"
+    - "--silent"
+    - "--headless" # without opening a browser window
+    - "--no-sandbox"
+    - "--disable-dev-shm-usage"
+    - "--disable-gpu"
+    

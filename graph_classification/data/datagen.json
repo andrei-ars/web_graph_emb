@@ -1,0 +1,16 @@
+{
+	"fields": [	       
+        {
+            "url": "https://demo1.testgold.dev/login",
+            "name": "email",
+            "xpath": "//*[@id=\"root\"]/main/div/div/section/form/div[1]/div[1]/input",
+            "value": "email@example.com"
+        },
+        {
+            "url": "https://demo1.testgold.dev/login",
+            "name": "password",
+            "xpath": "//*[@id=\"root\"]/main/div/div/section/form/div[1]/div[2]/input",
+            "value": "admin123"
+        }
+    ]
+}

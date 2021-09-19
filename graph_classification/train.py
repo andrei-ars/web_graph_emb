@@ -9,4 +9,4 @@ if __name__ == "__main__":
 
     dataset = WebGraphDataset("dataset/dataset.dump")
     cl_model = GraphClassificationModel(dataset)
-    cl_model.train(batch_size=2, num_epochs=30)
+    cl_model.train(batch_size=2, num_epochs=10)

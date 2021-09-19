@@ -48,7 +48,8 @@ class GraphClassificationModel:
         self.dataset = dataset
         self.model = GCN(self.dataset, hidden_channels=64)
         print(self.model)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        #self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.005)
         self.criterion = torch.nn.CrossEntropyLoss()
 
     def train(self, batch_size, num_epochs=100, valid_percent=0.3):
@@ -106,4 +107,4 @@ if __name__ == "__main__":
 
     dataset = WebGraphDataset("dataset/dataset.dump")
     cl_model = GraphClassificationModel(dataset)
-    cl_model.train(batch_size=1, num_epochs=10)
+    cl_model.train(batch_size=3, num_epochs=10)
